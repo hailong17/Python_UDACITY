@@ -26,7 +26,7 @@ class CSVImporter(IngestorInterface):
             quotes (List[QuoteModel]): list of QuoteModel
         """
         if not cls.can_ingest(path):
-            raise Exception('Cannot Ingest Exception')
+            raise Exception('Cannot Ingest Exception: Unsupported file type')
 
         # Read CSV file and check neccessary column
         try:

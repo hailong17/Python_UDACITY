@@ -25,20 +25,23 @@ class TextImporter(IngestorInterface):
     def parse(cls, path: str):
         """Parse txt file and list of quote models."""
         if not cls.can_ingest(path):
-            raise Exception('Connot Ingest Exception')
+            raise Exception('Cannot Ingest Exception: Unsupported file type')
 
         quotes = []
 
-        with open(path, 'r') as f:
-            for line in f:
-                if "-" not in line:
-                    continue
-            try:
-                body = line.split("-")[0].strip().strip('"')
-                author = line.split("-")[1].strip()
-                new_quote = QuoteModel(body, author)
-                quotes.append(new_quote)
-            except IndexError:
-                    print(f"Warning: Skipping malformed line: {line.strip()}")
+        try:
+            with open(path, 'r') as f:
+                for line in f:
+                    if "-" not in line:
+                        continue
+                try:
+                    body = line.split("-")[0].strip().strip('"')
+                    author = line.split("-")[1].strip()
+                    new_quote = QuoteModel(body, author)
+                    quotes.append(new_quote)
+                except ValueError as e:
+                    print(f"Warning: Skipping malformed line: {line.strip()} | Error: {e}")
+        except FileNotFoundError:
+            print(f"Error: File not found - {path}")
 
         return quotes

@@ -23,18 +23,23 @@ def setup():
                    './_data/DogQuotes/DogQuotesCSV.csv']
 
     quotes = []
-
-    for quote_file in quote_files:
-        print(quote_file)
-        quotes += Ingestor.parse(quote_file)
-        print(Ingestor.parse(quote_file))
-
+    imgs = []
     images_path = "./_data/photos/dog/"
 
-    imgs = []
-    for file in os.listdir(images_path):
-        if file.endswith(".jpg"):
-            imgs.append(os.path.join(images_path, file))
+    for quote_file in quote_files:
+        try:
+            print(f"Processing: {quote_file}")
+            quotes += Ingestor.parse(quote_file)
+            print(Ingestor.parse(quote_file))
+        except Exception as e:
+            print(f"Error processing file {quote_file}: {e}")
+
+    try:
+        for file in os.listdir(images_path):
+            if file.endswith(".jpg"):
+                imgs.append(os.path.join(images_path, file))
+    except Exception as e:
+        print(f"Error reading image files from {images_path}: {e}")
 
     return quotes, imgs
 
@@ -59,23 +64,29 @@ def meme_form():
 
 @app.route('/create', methods=['POST'])
 def meme_post():
-    """Create a user defined meme."""
+    """Create a user-defined meme."""
     if not request.form["image_url"]:
         return render_template('meme_form.html')
 
     image_url = request.form["image_url"]
     try:
         r = requests.get(image_url, verify=False)
-        output = f'./output/{random.randint(0,100000000)}.png'
-        img = open(output, 'wb').write(r.content)
+        r.raise_for_status()
+        output = f'./output/{random.randint(0,1000)}.png'
+        with open(output, 'wb') as img_file:
+            img_file.write(r.content)
 
-    except:
-        print("Bad Image URL")
-        return render_template('meme_form.html')
+    except requests.exceptions.RequestException as e:
+        # Catch any issues with the HTTP request
+        print(f"Error fetching the image URL: {e}")
+        return render_template('meme_form.html', error="Invalid image URL or network issue.")
 
     body = request.form["body"]
     author = request.form["author"]
-    path = meme.make_meme(output, body, author)
+    try:
+        path = meme.make_meme(output, body, author)
+    except Exception as e:
+        print(f"Error creating the meme: {e}")
 
     os.remove(output)
     return render_template('meme.html', path=path)

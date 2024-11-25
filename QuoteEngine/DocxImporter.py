@@ -26,7 +26,7 @@ class DocxImporter(IngestorInterface):
             quotes (List[QuoteModel]): list of QuoteModel
         """
         if not cls.can_ingest(path):
-            raise ValueError("Cannot ingest the provided file.")
+            raise ValueError("Cannot Ingest Exception: Unsupported file type")
 
         quotes = []
 
