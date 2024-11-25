@@ -47,11 +47,26 @@ def generate_meme(path=None, body=None, author=None):
     return path
 
 
-if __name__ == "__main__":
+# if __name__ == "__main__":
+#     parser = argparse.ArgumentParser(description='Generate meme!!')
+#     parser.add_argument('--body', type=str, default=None, help="text that want to show")
+#     parser.add_argument('--author', type=str, default=None, help="author of the text")
+#     parser.add_argument('--path', type=str, default=None, help="file path for background image you want")
+
+#     args = parser.parse_args()
+#     print("Meme generated in at '{}'".format(generate_meme(args.path, args.body, args.author)))
+
+def parse_arguments():
     parser = argparse.ArgumentParser(description='Generate meme!!')
     parser.add_argument('--body', type=str, default=None, help="text that want to show")
     parser.add_argument('--author', type=str, default=None, help="author of the text")
     parser.add_argument('--path', type=str, default=None, help="file path for background image you want")
+    return parser.parse_args()
 
-    args = parser.parse_args()
-    print("Meme generated in at '{}'".format(generate_meme(args.path, args.body, args.author)))
+def main():
+    args = parse_arguments()
+    meme = generate_meme(args.path, args.body, args.author)
+    print("Meme generated in at '{}'".format(meme))
+
+if __name__ == "__main__":
+    main()
