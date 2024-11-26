@@ -1,12 +1,7 @@
-"""
-Project: Meme Generator
-Author: LongNH63
-Date: 24/11/2024
-"""
-
 """Module for QuoteModel Class."""
 
 from dataclasses import dataclass
+
 
 @dataclass(frozen=True)
 class QuoteModel:
@@ -19,8 +14,10 @@ class QuoteModel:
         """Return the string representation."""
         return f'"{self.body}" - {self.author}'
 
+
 class InvalidFileFormat(Exception):
     def __init__(self, path: str, cls: type):
         self.path = path
         self.cls = cls
-        super().__init__(f"Invalid file format for '{path}'. {cls.__name__} cannot ingest this file.")
+        super().__init__(f"Invalid file format for '{path}'. {cls.__name__}\
+                         cannot ingest this file.")

@@ -35,7 +35,8 @@ class CSVImporter(IngestorInterface):
             raise ValueError(f"Error reading the file: {e}")
 
         if 'body' not in df.columns or 'author' not in df.columns:
-            raise ValueError("CSV file must contain 'body' and 'author' columns")
+            raise ValueError("CSV file must contain \
+                             'body' and 'author' columns")
 
         # Creata QuoteModel list by list comprehension
         quotes = [

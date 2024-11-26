@@ -1,9 +1,3 @@
-"""
-Project: Meme Generator
-Author: LongNH63
-Date: 24/11/2024
-"""
-
 """Module that Encapsulate moduels for ingest differnt types of files."""
 from QuoteEngine.QuoteModel import QuoteModel, InvalidFileFormat
 from .IngestorInterface import IngestorInterface
@@ -29,4 +23,3 @@ class Ingestor(IngestorInterface):
             if ingestor.can_ingest(path):
                 return ingestor.parse(path)
         raise InvalidFileFormat
-

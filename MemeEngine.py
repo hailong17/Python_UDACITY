@@ -24,7 +24,7 @@ class MemeEngine:
                   width=500) -> str:
         """Gernerate Meme with given img, text, and author."""
         width = min(width, 1000)
-        out_path = f"{self.temp_dir}/{random.randint(0,1000)}.png"
+        out_path = f"{self.temp_dir}/{random.randint(0, 1000)}.png"
         default_font = "./_data/arial.ttf"
         default_font_size = 30
 
@@ -44,7 +44,8 @@ class MemeEngine:
                 text_y = random.randint(0, int(img.height-default_font_size*2))
 
                 draw.text((text_x, text_y), text, font=font, fill="black")
-                draw.text((int(text_x*1.2), text_y+default_font_size), " - "+author, font=font)
+                draw.text((int(text_x*1.2), text_y+default_font_size),
+                          " - "+author, font=font)
                 img.save(out_path)
 
         except Exception:

@@ -1,9 +1,3 @@
-"""
-Project: Meme Generator
-Author: LongNH63
-Date: 24/11/2024
-"""
-
 from typing import List
 from .IngestorInterface import IngestorInterface
 from .QuoteModel import QuoteModel
@@ -40,7 +34,8 @@ class TextImporter(IngestorInterface):
                     new_quote = QuoteModel(body, author)
                     quotes.append(new_quote)
                 except ValueError as e:
-                    print(f"Warning: Skipping malformed line: {line.strip()} | Error: {e}")
+                    print(f"Warning: Skipping malformed line:\
+                          {line.strip()} | Error: {e}")
         except FileNotFoundError:
             print(f"Error: File not found - {path}")
 

@@ -1,9 +1,3 @@
-"""
-Project: Meme Generator
-Author: LongNH63
-Date: 24/11/2024
-"""
-
 """Module that declares abstract base class giving interface."""
 from abc import ABC, abstractmethod
 from typing import List

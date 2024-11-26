@@ -1,9 +1,3 @@
-"""
-Project: Meme Generator
-Author: LongNH63
-Date: 24/11/2024
-"""
-
 from typing import List
 from .IngestorInterface import IngestorInterface
 from .QuoteModel import QuoteModel
