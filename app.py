@@ -72,14 +72,15 @@ def meme_post():
     try:
         r = requests.get(image_url, verify=False)
         r.raise_for_status()
-        output = f'./output/{random.randint(0,1000)}.png'
+        output = f'./output/{random.randint(0, 1000)}.png'
         with open(output, 'wb') as img_file:
             img_file.write(r.content)
 
     except requests.exceptions.RequestException as e:
         # Catch any issues with the HTTP request
         print(f"Error fetching the image URL: {e}")
-        return render_template('meme_form.html', error="Invalid image URL or network issue.")
+        return render_template('meme_form.html',
+                               error="Invalid image URL or network issue.")
 
     body = request.form["body"]
     author = request.form["author"]
