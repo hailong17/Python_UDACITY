@@ -1,3 +1,4 @@
+"""PDF Importer."""
 from typing import List
 from .IngestorInterface import IngestorInterface
 from .QuoteModel import QuoteModel
@@ -7,14 +8,7 @@ import os
 
 
 class PDFImporter(IngestorInterface):
-    """Parse pdf file
-
-        Args:
-            path (str): path to the pdf file
-
-        Returns:
-            quotes (List[QuoteModel]): list of QuoteModel
-        """
+    """Parse pdf file."""
 
     allowed_extensions = '.pdf'
 

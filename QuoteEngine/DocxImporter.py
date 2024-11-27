@@ -1,3 +1,4 @@
+"""Docx Importer."""
 from typing import List
 from .IngestorInterface import IngestorInterface
 from .QuoteModel import QuoteModel
@@ -11,14 +12,7 @@ class DocxImporter(IngestorInterface):
 
     @classmethod
     def parse(cls, path: str):
-        """Parse docx file using pandas library
-
-        Args:
-            path (str): path to the docx file
-
-        Returns:
-            quotes (List[QuoteModel]): list of QuoteModel
-        """
+        """Parse docx file using pandas library."""
         if not cls.can_ingest(path):
             raise ValueError("Cannot Ingest Exception: Unsupported file type")
 

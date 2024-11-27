@@ -1,5 +1,4 @@
 """Module for QuoteModel Class."""
-
 from dataclasses import dataclass
 
 
@@ -16,7 +15,10 @@ class QuoteModel:
 
 
 class InvalidFileFormat(Exception):
+    """Invalid format class."""
+
     def __init__(self, path: str, cls: type):
+        """Init."""
         self.path = path
         self.cls = cls
         super().__init__(f"Invalid file format for '{path}'. {cls.__name__}\

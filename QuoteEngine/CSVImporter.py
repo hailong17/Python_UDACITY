@@ -1,3 +1,4 @@
+"""CSV Importer."""
 """
 Project: Meme Generator
 Author: LongNH63
@@ -17,14 +18,7 @@ class CSVImporter(IngestorInterface):
 
     @classmethod
     def parse(cls, path: str):
-        """Parse csv file using pandas library
-
-        Args:
-            path (str): path to the csv file
-
-        Returns:
-            quotes (List[QuoteModel]): list of QuoteModel
-        """
+        """Parse csv file using pandas library."""
         if not cls.can_ingest(path):
             raise Exception('Cannot Ingest Exception: Unsupported file type')
 

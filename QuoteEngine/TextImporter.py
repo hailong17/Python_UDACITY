@@ -1,17 +1,11 @@
+"""Text Importer."""
 from typing import List
 from .IngestorInterface import IngestorInterface
 from .QuoteModel import QuoteModel
 
 
 class TextImporter(IngestorInterface):
-    """Parse text file
-
-        Args:
-            path (str): path to the text file
-
-        Returns:
-            quotes (List[QuoteModel]): list of QuoteModel
-        """
+    """Parse text file."""
 
     allowed_extensions = '.txt'
 
