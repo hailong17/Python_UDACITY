@@ -1,3 +1,4 @@
+"""Create application."""
 """
 Project: Meme Generator
 Author: LongNH63

@@ -1,3 +1,4 @@
+"""Meme Engine."""
 """
 Project: Meme Generator
 Author: LongNH63

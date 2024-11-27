@@ -1,3 +1,4 @@
+"""Create meme."""
 """
 Project: Meme Generator
 Author: LongNH63
@@ -48,7 +49,7 @@ def generate_meme(path=None, body=None, author=None):
 
 
 def parse_arguments():
-    """ Parse arguments. """
+    """Parse arguments."""
     parser = argparse.ArgumentParser(
                                     description='Generate meme!!')
     parser.add_argument('--body', type=str, default=None,
@@ -61,7 +62,7 @@ def parse_arguments():
 
 
 def main():
-    """ Run. """
+    """Run."""
     args = parse_arguments()
     meme = generate_meme(args.path, args.body, args.author)
     print("Meme generated in at '{}'".format(meme))
